@@ -7,15 +7,13 @@ from user import User
 from google.appengine.api import users
 from datetime import datetime
 
-# Create JSON dumps
-# Create React frontend and call the endpoints localhost:8080/browse, etc.
+current_jinja_directory = jinja2.Environment(
+    loader=jinja2.FileSystemLoader('templates'))
 
-
-env = jinja2.Environment(loader=jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = env.get_template('home.html')
+        template = current_jinja_directory.get_template('home.html')
 
         user = users.get_current_user()
         logout_url = users.create_logout_url('/')
@@ -23,19 +21,19 @@ class MainHandler(webapp2.RequestHandler):
         print(user)
         if user:
             greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                (user.email(), logout_url))
+                        (user.email(), logout_url))
         else:
             greeting = ('<a href="%s">Sign in or register</a>.' % login_url)
 
         if users.get_current_user():
-            us = users.get_current_user().email()
-            us = User.query(User.email == us).fetch()
+            us = User.query(
+                User.email == users.get_current_user().email()).fetch()
 
             if us:
                 pass
             else:
                 us = User(
-                    email= users.get_current_user().email(),
+                    email=users.get_current_user().email(),
                     posts=[]
                 )
                 us.put()
@@ -44,23 +42,17 @@ class MainHandler(webapp2.RequestHandler):
             'data': user,
             'greeting': greeting
         }
-        # self.response.headers['Content-Type'] = 'application/json'
-        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
-        self.response.headers.add_header('Access-Control-Allow-Headers', 'Content-Type')
-        # print(self.response.headers)
-        # self.response.write(user)
-
         self.response.write(template.render(vars))
 
     def post(self):
         us = users.get_current_user().email()
-        us = User.query(User.email == u).fetch()
+        us = User.query(User.email == us).fetch()
 
         if us:
             pass
         else:
             us = User(
-                email= users.get_current_user().email(),
+                email=users.get_current_user().email(),
                 posts=[]
             )
             us.put()
@@ -68,11 +60,12 @@ class MainHandler(webapp2.RequestHandler):
         # self.response.write(us)
         self.redirect('/')
 
+
 class ProfileHandler(webapp2.RequestHandler):
     def get(self):
         if not users.get_current_user():
             self.redirect('/main')
-        template = env.get_template('profile.html')
+        template = current_jinja_directory.get_template('profile.html')
 
         u = self.request.get('username') or users.get_current_user().email()
         # self.response.write(u)
@@ -82,7 +75,7 @@ class ProfileHandler(webapp2.RequestHandler):
         vars = {
             'user': u,
             'posts': posts,
-            'score': sum( [p.score for p in posts] )
+            'score': sum([p.score for p in posts])
         }
         print(vars)
         # self.response.headers['Content-Type'] = 'application/json'
@@ -90,7 +83,7 @@ class ProfileHandler(webapp2.RequestHandler):
         self.response.write(template.render(vars))
 
     def post(self):
-        template = env.get_template('profile.html')
+        template = current_jinja_directory.get_template('profile.html')
         u = self.request.get('username') or users.get_current_user().email()
         u = User.query(User.email == u).get()
         posts = None
@@ -102,17 +95,18 @@ class ProfileHandler(webapp2.RequestHandler):
         vars = {
             'user': u,
             'posts': posts,
-            'score': sum( [p.score for p in [p.get() for p in u.posts]] )
+            'score': sum([p.score for p in [p.get() for p in u.posts]])
         }
         print(vars)
 
         self.response.write(vars)
 
+
 class PostHandler(webapp2.RequestHandler):
     def get(self):
         if not users.get_current_user():
             self.redirect('/main')
-        template = env.get_template('post.html')
+        template = current_jinja_directory.get_template('post.html')
         self.response.write(template.render())
 
     def post(self):
@@ -120,9 +114,10 @@ class PostHandler(webapp2.RequestHandler):
 
         post = Post(
             content=self.request.get('content'),
-            words_punned= [kw.strip().lower() for kw in self.request.get('keywords').split(',')],
-            poster_name= users.get_current_user().email(),
-            score= 0
+            words_punned=[kw.strip().lower()
+                          for kw in self.request.get('keywords').split(',')],
+            poster_name=users.get_current_user().email(),
+            score=0
         )
 
         key = post.put()
@@ -141,17 +136,16 @@ class PostHandler(webapp2.RequestHandler):
         # return
         time.sleep(.2)
         # self.response.out.write(json.dumps(obj))
-        self.redirect('/browse')
+        self.redirect('/feed')
 
         return
 
 
-class BrowseHandler(webapp2.RequestHandler):
-  
+class FeedHandler(webapp2.RequestHandler):
 
     def display_page(self, query):
-        template = env.get_template('browse.html')
-        results = query.fetch(limit = 10)
+        template = current_jinja_directory.get_template('feed.html')
+        results = query.fetch(limit=10)
 
         def to_string(value, time):
             return '%s %s%s ago' % (
@@ -159,13 +153,12 @@ class BrowseHandler(webapp2.RequestHandler):
                 time,
                 's' if value > 1 else ''
             )
-
         now = datetime.now()
         for result in results:
-            w = divmod((now-result.time).total_seconds(),60*60*24*7)  # days
-            d = divmod(w[1],86400)  # days
-            h = divmod(d[1],3600)  # hours
-            m = divmod(h[1],60)  # minutes
+            w = divmod((now-result.time).total_seconds(), 60*60*24*7)  # days
+            d = divmod(w[1], 86400)  # days
+            h = divmod(d[1], 3600)  # hours
+            m = divmod(h[1], 60)  # minutes
             s = m[1]  # seconds
             if w[0] > 0:
                 result.timediff = to_string(w[0], 'week')
@@ -177,23 +170,11 @@ class BrowseHandler(webapp2.RequestHandler):
                 result.timediff = to_string(m[0], 'minute')
             else:
                 result.timediff = 'moments ago'
-
-
-
         template_data = {
             'posts': results
         }
-
         self.response.write(template.render(template_data))
 
-        # self.response.headers['Content-Type'] = 'application/json'   
-        # obj = {
-        #     'success': 'some var', 
-        #     'payload': 'some var',
-        # }
-        # JSON dump
-        # self.response.out.write(json.dumps(obj))  
-        
     def get(self):
         if not users.get_current_user():
             self.redirect('/main')
@@ -219,22 +200,24 @@ class BrowseHandler(webapp2.RequestHandler):
                 user.put()
 
         elif (self.request.get('kind') == 'search'):
-            query = Post.query(Post.words_punned == str(self.request.get('q')).strip().lower())
+            query = Post.query(Post.words_punned == str(
+                self.request.get('q')).strip().lower())
 
         query = query.order(-Post.time)
 
-
         self.display_page(query)
+
 
 class AboutHandler(webapp2.RequestHandler):
     def get(self):
-        template = env.get_template('about.html')
+        template = current_jinja_directory.get_template('about.html')
         self.response.write(template.render())
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/post', PostHandler),
-    ('/browse', BrowseHandler),
+    ('/feed', FeedHandler),
     ('/profile', ProfileHandler),
     ('/about', AboutHandler)
 ], debug=True)

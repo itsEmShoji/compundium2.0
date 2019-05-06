@@ -4,24 +4,23 @@
     <meta charset="utf-8">
     <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/resources/styles/styles.css">
+    <link rel="stylesheet" href="/resources/styles/common.css">
     {% block head %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body>
-    <header class="head"></header>
-    <div class="topnav container" id="myTopnav">
+  <header class="head"><img class="headerimg" src="../resources/images/compundium_header.png" alt="header">
+    <div class="topnav" id="myTopnav">
       <a href="/">Home</a>
-      <a href="/browse">Browse</a>
+      <a href="/feed">Feed</a>
       <a href="/post">Post</a>
       <a href="/profile">Profile</a>
-      <a href="/about">About</a>
     </div>
-    <div class='container'>
-      {% block content %}{% endblock %}
-    </div>
-
-
+  </header>
+  <body>
+      <div class="container">
+          {% block content %}{% endblock %}
+      </div>
   </body>
-</html>
+  <footer>footer</footer>
+</html
