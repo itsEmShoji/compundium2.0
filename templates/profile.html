@@ -14,20 +14,21 @@ class Profile extends React.Component {
     render() {
         return (
           <div>
-            <h2> {{user.email}} </h2>
-            <h1 className="titles"> Profiles </h1>
-            <h2 className="prompt_text">Score: {{score}} </h2>
+            <h1 className="titles"> Profile: {{user.email}}</h1>
+            <h2 className="prompt_text">Your Score: {{score}} </h2>
 
-
-            <form action="/profile" method="post">
+            <div className="buttons">
+                <form className="viewPost" action="/profile" method="post">
               <input type="hidden" name="target" value="view posts"></input>
               <input className="button" type="submit"value="view your posts"></input>
             </form>
 
-            <form action="/profile" method="post">
+            <form className="viewlikes" action="/profile" method="post">
               <input type="hidden" name="target" value="view liked posts"></input>
               <input className="button" type="submit"value="view liked posts"></input>
             </form>
+              </div>
+            
             <div>
               {%for post in posts%}
                 {% include "pun.html" %}

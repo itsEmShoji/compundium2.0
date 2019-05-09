@@ -3,36 +3,19 @@ class Home extends React.Component {
     render() {
         return (
           <div>
-          {this.props.children}
-              <div id="homeblurb">
-                <h1 className="titles"> Welcome to Compundium! </h1>
-              </div>
+          <div className="homepageInfo">{this.props.children}</div>
+            <h1 className="title"> Welcome to Compundium2! </h1>
+            <div className="homeContent"> 
+            <div className="homepageInfo"> Compundium2 is a remake of <a href="https://punr-compendium.appspot.com">Compundium</a>, a social media site built for CSSIx 2017 to share puns with others!</div>
+            <div className="homepageInfo">(compendium of puns = Compundium!)</div>
+            <h3 className="homepageInfo2">Compundium2 was made by <a href="https://itsemshoji.github.io/">Emily Shoji</a>, LMUCS'19</h3>
+            </div>
           </div>
         );
     }
 }
 
-class Browse extends React.Component {
-  render() {
-      return (
-        <div>
-          <span className="container">
-            <form action="/browse" method="post">
-              <input type="hidden" name="kind" value="search"></input>
-              <input id="search" type="text" name="q" placeholder='Search...' value=""></input>
-              <input className="button" id="button" type="submit" value="Search"></input>
-            </form>
-          </span>
-          {this.props.children}
-        </div>
-      );
-  }
-}
-
 ReactDOM.render(
-    <div>
-    <Home/>
-    <Browse/>
-    </div>,
+    <Home/>,
     document.getElementById('root')
     );

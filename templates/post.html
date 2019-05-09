@@ -4,13 +4,12 @@
 
 {% block content %}
 <form action="/post" method="post">
-  <h2 className="titles">Create Post</h2>
-  <textArea type="text" name="content" placeholder="Create new pun..." maxlength="140" rows="5" cols="40"></textArea>
+  <h1 className="title">Create Post</h1>
+  <textArea type="text" name="content" placeholder="Create new pun..." maxlength="120" rows="5" cols="40"></textArea>
   <br>
   <h3 className="prompt_text">Words Punned (split by commas):</h3>
   <input type="text" name="keywords"></input>
   <br>
   <input id="confirm" className="button" type="submit" value="Submit"></input>
-
 </form>
 {% endblock %}

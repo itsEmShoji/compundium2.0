@@ -5,14 +5,15 @@
 body {
 	background-color: #ffffff;
 	font-style: normal;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Helvetica, sans-serif;
+	margin-bottom: 100px;
 }
 
 .topnav {
 	background-color: #1a2930;
 	overflow: hidden;
 	width: 100vw;
-	height: 7vh;
+	height: 6vh;
 }
 
 .topnav a {
@@ -25,7 +26,7 @@ body {
 }
 
 .topnav a:hover {
-	background-color: #246eb9;
+	background-color: #edafb8;
 	color: black;
 }
 
@@ -35,17 +36,31 @@ body {
 	padding: 5px;
 }
 
+.homepageInfo,
+.homepageInfo2 {
+	margin-top: 30px;
+}
+
+.homeContent {
+	display: block;
+	margin: auto;
+	font-size: 30px;
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 30px;
+	font-family: Helvetica, sans-serif;
+}
+
 .button {
 	background-color: #1a2930;
 	color: #f2f2f2;
-	margin: 1px solid black;
 }
-
 .button:hover {
 	background-color: #f7ce3e;
 	color: black;
 }
-
 .container {
 	height: 70vh;
 	padding: 20vh auto 10vh auto;
@@ -54,42 +69,81 @@ body {
 	grid-template-columns: 1;
 }
 
-.postcontainer {
-	margin-top: 50px;
+.rowse {
+	display: grid;
+	grid-template-columns: 1;
+	grid-template-rows: 2;
 }
 
+.browseContainer {
+	margin: 30px 0 30px 0;
+	float: right;
+	grid-column: 1;
+	grid-row: 1;
+}
+.postContainer {
+	grid-column: 1;
+	grid-row: 2;
+	margin-top: 20px;
+}
 .data {
-	border-top: 2px solid #1a2930;
 	font-size: 12px;
+	text-align: left;
+	margin-bottom: 5px;
 }
-
 .post {
 	display: grid;
-	grid-template-columns: 1fr 3fr;
+	grid-template-columns: 1fr 6fr;
 	grid-template-rows: 1;
 	grid-gap: 5px;
-	border: blue 3px;
+	margin: 10px 5px 0px 5px;
+	padding: 5px 5px 0 5px;
+	border-radius: 20px;
+	box-shadow: inset 7em 1.75em #4392f1;
+	border: solid;
+	background: #98b9f2;
 }
-
+.content {
+	text-align: left;
+}
+.postContent {
+	border: 5px black;
+	color: white;
+}
 .score {
 	grid-column: 1 / span 1;
 	grid-row: 1;
-	width: 7vw;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1;
+	display: grid;
+	width: 5vw;
 }
-
+input.button {
+	grid-column: 2 /span 1;
+	grid-row: 1;
+}
 .hidden {
 	display: hidden;
 }
-
 .time {
 	float: right;
 }
-
-footer {
-	height: 7vh;
-	background-color: #1a2930;
-	position: relative;
-	margin-top: -7vh;
-	clear: both;
-	text-align: center;
+.buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1;
+	width: 30vw;
+	margin: auto;
+}
+.viewPost {
+	grid-column: 1 / span 1;
+	grid-row: 1;
+	align-self: center;
+	justify-self: center;
+}
+.viewlikes {
+	grid-column: 2/ span 1;
+	grid-row: 1;
+	align-self: center;
+	justify-self: center;
 }

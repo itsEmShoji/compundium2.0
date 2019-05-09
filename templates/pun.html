@@ -7,12 +7,11 @@
               <input className="button" type="submit" value="^"></input>
             </form>
           </div>
-          <span className="stuff">
-            <p className="content"> {{ post.content }} </p>
-            <div className="data">
-              <span className="author"> {{ post.poster_name }} </span>
-              <span className="time"> {{ post.timediff }} </span>
-        
+            <div className="postContent">
+                <div className="data">
+                    <span className="author"> {{ post.poster_name }} </span>
+                    <span className="time"> {{ post.timediff }} </span>
+                </div>
+              <p className="content"> {{ post.content }} </p>
             </div>
-          </span>
         </div>
