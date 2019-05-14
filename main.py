@@ -171,7 +171,9 @@ class FeedHandler(webapp2.RequestHandler):
             else:
                 result.timediff = 'moments ago'
         template_data = {
-            'posts': results
+            'posts': results,
+            'user_count': len(User.query().fetch()),
+            'users': User.query().order(User.email).fetch(),
         }
         self.response.write(template.render(template_data))
 

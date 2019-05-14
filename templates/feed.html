@@ -2,7 +2,6 @@
 {% block title %}Feed{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="/resources/styles/feed.css">
 
 <div id="root"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
@@ -11,13 +10,21 @@
     <script src="../resources/scripts/Feed.js" type="text/babel"></script>
     <script type="text/babel">
         ReactDOM.render(
-        <Browse>
-          <div className="postcontainer">
+        <div className="feedPage">  
+        <section className="about">
+            <div id="about_content">
+              <h2 id="total_title">Total number of users: {{ user_count }}</h2> {% for user in users %}
+              <h3 id="target_info">{{ user.email }}</h3> {% endfor %}
+            </div>
+          </section>
+          <Feed>
+          <div className="postContainer">
             {%for post in posts%}
               {% include "pun.html" %}
             {% endfor %}
           </div>
-        </Browse>,
+        </Feed>
+        </div>,
         document.getElementById('root')
         );
     </script>
