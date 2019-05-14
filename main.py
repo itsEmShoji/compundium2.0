@@ -56,8 +56,6 @@ class MainHandler(webapp2.RequestHandler):
                 posts=[]
             )
             us.put()
-        print(us)
-        # self.response.write(us)
         self.redirect('/')
 
 
@@ -68,7 +66,6 @@ class ProfileHandler(webapp2.RequestHandler):
         template = current_jinja_directory.get_template('profile.html')
 
         u = self.request.get('username') or users.get_current_user().email()
-        # self.response.write(u)
         u = User.query(User.email == u).get()
         posts = [p.get() for p in u.posts]
 
@@ -77,8 +74,6 @@ class ProfileHandler(webapp2.RequestHandler):
             'posts': posts,
             'score': sum([p.score for p in posts])
         }
-        print(vars)
-        # self.response.headers['Content-Type'] = 'application/json'
 
         self.response.write(template.render(vars))
 
@@ -97,9 +92,7 @@ class ProfileHandler(webapp2.RequestHandler):
             'posts': posts,
             'score': sum([p.score for p in [p.get() for p in u.posts]])
         }
-        print(vars)
-
-        self.response.write(vars)
+        self.response.write(template.render(vars))
 
 
 class PostHandler(webapp2.RequestHandler):
