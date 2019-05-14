@@ -87,17 +87,17 @@ The Database for the application will track user data (i.e. posts, user info and
 
 * The database will record user posts
 
-## 5.4  Performance Requirements by CSC
+## 2.1  Performance Requirements by CSC
 
-### 5.4.1 Graphical User Interface
+### 2.1.1 Graphical User Interface
 
-#### 5.4.1.1 Login Page
+#### 2.1.1.1 Login Page
 
 * User shall be logged in within 5 seconds of entering their username and password.
 
 * Main login screen shall be displayed within 3 seconds of opening the application.
 
-#### 5.4.1.2 Main Page
+#### 2.1.1.2 Main Page
 
 * A new post will be visible to the user within 5 seconds of posting.
 
@@ -105,7 +105,7 @@ The Database for the application will track user data (i.e. posts, user info and
 
 * A user shall be able to upvote or downvote other users' posts
 
-#### 5.4.1.3 Charging Station Menu
+#### 2.1.1.3 Charging Station Menu
 
 * The Charging Station Menu shall expand instantaneously after a user taps on the circular menu button on the bottom of the screen.
 
@@ -119,13 +119,13 @@ The Database for the application will track user data (i.e. posts, user info and
 
 * The Charging Station Menu shall collapse instantaneously after a user taps on the circular menu on the bottom of the screen.
 
-## 5.5  Project Environment Requirements
+## 2.2  Project Environment Requirements
 
-### 5.5.1   Development Environment Requirements
+### 2.2.1   Development Environment Requirements
 
 The following sections outline the environment requirements for development of the iOS application. 
 
-#### 5.5.1.1 Software Requirements
+#### 2.2.1.1 Software Requirements
 
 Category | Requirement
 |--------|------------|
