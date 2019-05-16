@@ -71,47 +71,21 @@ The Database application will track data relevant to the users and their posts i
 
 #### 3.2.1.3 Feed Page
 
-* The charging station preview shall appear when a user taps a charger icon on the main page.
+* The feed page shall display users posts
 
-* The charging station preview shall cover roughly 1/4 the screen's width.
+* Each Post will display who posted it.
 
-* The charging station preview shall display the street view of the charging station location.
+* Each Post will display the time posted.
 
-* The charging station preview shall display a button to open the location on the Google Maps mobile application.
+* Each Post will contain a count to keep track of upvotes.
 
-* The charging station preview shall display a button to open the charging station menu.
-
-* The charging station preview shall display the location name of the selected charging station.
-
-* The charging station preview shall display how many bays are available at the seleted charging station.
+* Each post will contain a button for upvotes.
 
 #### 3.2.1.4 Post Page
 
-* The charging station menu shall be displayed when a user clicks on the button to view the menu from the charging station preview.
+* The post page shall contain a form for the user to type and post from.
 
-* The charging station menu shall take up most of the screen with small margins on all sides, and shall not cover the circular user menu button on the bottom of the screen.
-
-* The charging station menu shall display the street view of the charging station location which will pan accordingly to any finger swiping interaction with the viewing window.
-
-* The charging station menu shall display the location name of the charging station.
-
-* The charging station menu shall display the location coordinates of the charging station.
-
-* The charging station menu shall display the distance in miles of the charging station from the user.
-
-* The charging station menu shall display the distance in minutes of the charging station from the user.
-
-* The charging station menu shall display an announcement to the user to earn a reward for using the station.
-
-* The charging station menu shall display a warning for heavy traffic if necessary.
-
-* The charging station menu shall display the assigned bay number for the user.
-
-* The charging station menu shall provide a link for the user to report any problems with the application or charging station.
-
-* The charging station menu shall display a button for the user to start their trip.
-
-* The charging station menu shall display a button for the user to reserve a bay.
+* The user will be redirected to the feed page once hitting submit.
 
 #### 3.2.1.5 User Profile Page
 
