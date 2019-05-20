@@ -194,6 +194,19 @@ class FeedHandler(webapp2.RequestHandler):
                 user.posts_liked.insert(0, key)
                 user.put()
 
+        elif (self.request.get('kind') == 'downvote'):
+            post_id = int(self.request.get('post_id'))
+
+            user = users.get_current_user().email()
+            user = User.query(User.email == user).get()
+            post = Post.get_by_id(post_id)
+
+            if post.key not in user.posts_disliked:
+                post.score -= 1
+                key = post.put()
+                user.posts_disliked.insert(0, key)
+                user.put()
+
         elif (self.request.get('kind') == 'search'):
             query = Post.query(Post.words_punned == str(
                 self.request.get('q')).strip().lower())

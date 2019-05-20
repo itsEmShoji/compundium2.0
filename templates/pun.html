@@ -5,7 +5,12 @@
             <form className="like_container" action="/feed" method="post">
               <input className="hidden" type="hidden" name="kind" value="upvote"></input>
               <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
-              <input className="button" type="submit" value="^"></input>
+              <input className="button" type="submit" value="+1"></input>
+            </form>
+            <form className="like_container" action="/feed" method="post">
+              <input className="hidden" type="hidden" name="kind" value="downvote"></input>
+              <input type="hidden" name="post_id" value="{{post.key.id()}}"></input>
+              <input className="button" type="submit" value="-1"></input>
             </form>
           </div>
             <div className="postContent">
