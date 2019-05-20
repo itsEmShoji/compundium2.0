@@ -228,4 +228,5 @@ app = webapp2.WSGIApplication([
     ('/feed', FeedHandler),
     ('/profile', ProfileHandler),
     ('/about', AboutHandler)
+
 ], debug=True)
