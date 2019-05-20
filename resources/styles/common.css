@@ -96,6 +96,23 @@ h1 {
 	margin-bottom: 5px;
 }
 
+.likeContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1;
+	grid-gap: 5px;
+}
+
+.upvote_form {
+	grid-row: 1;
+	grid-column: 2/ span 1;
+}
+
+.downvote_form {
+	grid-row: 1;
+	grid-column: 3/ span 1;
+}
+
 .about {
 	grid-row: 1;
 	grid-column: 2 / span 1;
@@ -115,7 +132,7 @@ h1 {
 	grid-template-rows: 1;
 	grid-gap: 5px;
 	margin: 10px 5px 0px 5px;
-	padding: 5px 5px 0 5px;
+	padding: 5px 3px 0 5px;
 	border-radius: 20px;
 	box-shadow: inset 7em 1.75em #4392f1;
 	border: solid 2px;
@@ -136,10 +153,7 @@ h1 {
 	display: grid;
 	width: 5vw;
 }
-input.button {
-	grid-column: 2 /span 1;
-	grid-row: 1;
-}
+
 .hidden {
 	display: hidden;
 }
